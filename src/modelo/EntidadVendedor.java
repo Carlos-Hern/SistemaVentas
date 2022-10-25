@@ -6,16 +6,18 @@ public class EntidadVendedor {
     String dpi;
     String nom;
     String tel;
+    String estado;
     String user;
 
     public EntidadVendedor() {
     }
 
-    public EntidadVendedor(int id, String dpi, String nom, String tel, String user) {
+    public EntidadVendedor(int id, String dpi, String nom, String tel, String estado, String user) {
         this.id = id;
         this.dpi = dpi;
         this.nom = nom;
         this.tel = tel;
+        this.estado = estado;
         this.user = user;
     }
 
@@ -50,6 +52,14 @@ public class EntidadVendedor {
     public void setTel(String tel) {
         this.tel = tel;
     }
+    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public String getUser() {
         return user;
@@ -59,9 +69,9 @@ public class EntidadVendedor {
         this.user = user;
     }
 
-    void setEstado(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   // void setEstado(String string) {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   // }
     
     
 }

@@ -28,7 +28,8 @@ public class VendedorDAO {
               ev.setDpi(rs.getString(2));
               ev.setNom(rs.getString(3));
               ev.setTel(rs.getString(4));
-              ev.setUser(rs.getString(5));
+              ev.setEstado(rs.getString(5));
+              ev.setUser(rs.getString(6));
           }
           
         } catch (Exception e){
