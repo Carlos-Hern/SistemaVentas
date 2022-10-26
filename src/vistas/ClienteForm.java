@@ -277,7 +277,7 @@ public class ClienteForm extends javax.swing.JInternalFrame {
         if (fila==-1){
             JOptionPane.showMessageDialog(this,"Debe seleccionar una fila");
         }else{
-            String dpi = txtDpi.getText();
+        String dpi = txtDpi.getText();
         String nom = txtNombres.getText();
         String dir = txtDireccion.getText();
         String est = cboEstado.getSelectedItem().toString();

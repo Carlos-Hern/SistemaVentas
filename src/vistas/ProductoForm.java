@@ -4,35 +4,35 @@ package vistas;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Vendedor;
-import modelo.VendedorDAOO;
+import modelo.Producto;
+import modelo.ProductoDAO;
 
 
-public class VendedorForm extends javax.swing.JInternalFrame {
-    VendedorDAOO dao= new VendedorDAOO();
-    Vendedor cl = new Vendedor();
 
-    DefaultTableModel modelo = new DefaultTableModel();
+public class ProductoForm extends javax.swing.JInternalFrame {
+    ProductoDAO dao= new ProductoDAO();
+    Producto cl = new Producto();
+    
+    DefaultTableModel modelo =new DefaultTableModel();
     int id;
-    public VendedorForm() {
+    public ProductoForm() {
         initComponents();
         listar();
     }
 void listar(){
-    List<Vendedor> lista=dao.listar();
+   List<Producto> lista=dao.listar();
     modelo=(DefaultTableModel)tabla.getModel();
-    Object[] ob= new Object[6];
+    Object[] ob= new Object[5];
+    
     for(int i = 0; i < lista.size(); i++){
-        ob[0]=lista.get(i).getId();
-        ob[1]=lista.get(i).getDpi();
-        ob[2]=lista.get(i).getNom();
-        ob[3]=lista.get(i).getTel();
-        ob[4]=lista.get(i).getEst();
-        ob[5]=lista.get(i).getUser();
-        modelo.addRow(ob);
+            ob[0]=lista.get(i).getId();
+            ob[1]=lista.get(i).getNom();
+            ob[2]=lista.get(i).getPrecio();
+            ob[3]=lista.get(i).getCant();
+            ob[4]=lista.get(i).getEst();
+            modelo.addRow(ob);
     }
     tabla.setModel(modelo);
-    
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,73 +43,42 @@ void listar(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtDpi = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        txtUsuario = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         cboEstado = new javax.swing.JComboBox<>();
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
-        setTitle("Modulo Vendedor");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "DPI", "NOMBRE", "TELEFONO", "ESTADO", "USUARIO"
-            }
-        ));
-        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tabla);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
-        );
+        setTitle("Modulo Productos");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("DPI:");
+        jLabel1.setText("NOMBRE:");
 
-        jLabel2.setText("NOMBRE:");
+        jLabel2.setText("PRECIO:");
 
-        jLabel3.setText("TELEFONO:");
+        jLabel3.setText("CANTIDAD:");
 
         jLabel4.setText("ESTADO:");
 
-        jLabel5.setText("USUARIO:");
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
 
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "1", "0" }));
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "0", "1" }));
 
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -149,19 +118,17 @@ void listar(){
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel4))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNombre)
+                    .addComponent(txtPrecio)
+                    .addComponent(txtCantidad)
+                    .addComponent(cboEstado, 0, 180, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtDpi)
-                    .addComponent(txtNombre)
-                    .addComponent(txtTelefono)
-                    .addComponent(cboEstado, 0, 185, Short.MAX_VALUE)
-                    .addComponent(txtUsuario))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -169,31 +136,60 @@ void listar(){
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtDpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nombre", "Precio", "Cantidad", "Estado"
+            }
+        ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,19 +206,25 @@ void listar(){
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
+
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        agregar();
-        limpiarTabla();
-        listar();
+       agregar();
+       limpiarTabla();
+       listar();
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -244,56 +246,50 @@ void listar(){
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
          int fila = tabla.getSelectedRow();
          if (fila==-1){
-             JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
-             
              
         }else{
              id= Integer.parseInt(tabla.getValueAt(fila,0).toString());
-             String dpi = tabla.getValueAt(fila, 1).toString();
-             String nom = tabla.getValueAt(fila, 2).toString();
-             String tel = tabla.getValueAt(fila, 3).toString();
+             String nom = tabla.getValueAt(fila, 1).toString();
+             String precio = tabla.getValueAt(fila, 2).toString();
+             String cant = tabla.getValueAt(fila, 3).toString();
              String est = tabla.getValueAt(fila, 4).toString();
-             String user = tabla.getValueAt(fila, 5).toString();
              
-             txtDpi.setText(dpi);
              txtNombre.setText(nom);
-             txtTelefono.setText(tel);
+             txtPrecio.setText(precio);
+             txtCantidad.setText(cant);
              cboEstado.setSelectedItem(est);
-             txtUsuario.setText(user);
          }
+         
     }//GEN-LAST:event_tablaMouseClicked
-
     void agregar(){
-        String dpi = txtDpi.getText();
         String nom = txtNombre.getText();
-        String tel = txtTelefono.getText();
+        String precio = txtPrecio.getText();
+        String cant = txtCantidad.getText();
         String est = cboEstado.getSelectedItem().toString();
-        String user = txtUsuario.getText();
-        Object [] ob = new Object[5];
-        ob[0]=dpi;
-        ob[1]=nom;
-        ob[2]=tel;
+        Object [] ob = new Object[4];
+        ob[0]=nom;
+        ob[1]=precio;
+        ob[2]=cant;
         ob[3]=est;
-        ob[4]=user;
         dao.add(ob);
     }
     void actualizar(){
         int fila = tabla.getSelectedRow();
-        if(fila==-1){
+        if (fila==-1){
             JOptionPane.showMessageDialog(this,"Debe seleccionar una fila");
         }else{
-        String dpi = txtDpi.getText();
         String nom = txtNombre.getText();
-        String tel = txtTelefono.getText();
+        String precio = txtPrecio.getText();
+        String cant = txtCantidad.getText();
         String est = cboEstado.getSelectedItem().toString();
-        String user = txtUsuario.getText();
-        Object[] obj = new Object[6];
+        
+        Object[] obj = new Object[5];
         obj[0]=id; 
-        obj[1]=dpi;
-        obj[2]=nom;
-        obj[3]=tel;
+        obj[1]=nom;
+        obj[2]=precio;
+        obj[3]=cant;
         obj[4]=est;
-        obj[5]=user;
+  
         dao.actualizar(obj);
         }
     }
@@ -308,11 +304,9 @@ void listar(){
     }
     void nuevo(){
         txtNombre.setText("");
-        txtTelefono.setText("");
-        txtDpi.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
         cboEstado.setSelectedItem(0);
-        txtUsuario.setText("");
-        txtDpi.requestFocus();
     }
     void limpiarTabla(){
         for(int i = 0; i < modelo.getRowCount(); i++){
@@ -320,6 +314,7 @@ void listar(){
             i = i-1;
         }
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
@@ -330,14 +325,12 @@ void listar(){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
-    private javax.swing.JTextField txtDpi;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
